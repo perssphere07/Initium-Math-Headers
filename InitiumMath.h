@@ -3,10 +3,43 @@
 #include <iostream>
 #include <vector>
 
-#define GDRT 1.61803398874989484820
-#define BONL 2.71828182845904523536
-#define PI   3.14159265358979323846
-#define TAU  6.28318530717958647692
+#define GDRT 1.61803398874989484820     // Golden Ratio
+#define BONL 2.71828182845904523536     // Base of the natural logarithm
+#define PI   3.14159265358979323846     // Pi
+#define TAU  6.28318530717958647692     // Tau, 2π
+
+#define YOTA 1000000000000000000000000  // Yotta
+#define ZETA 1000000000000000000000     // Zetta
+#define _EXA 1000000000000000000        // Exa
+#define PETA 1000000000000000           // Peta
+#define TERA 1000000000000              // Tera
+#define GIGA 1000000000                 // Giga
+#define MEGA 1000000                    // Mega
+#define KILO 1000                       // Kilo
+#define HCTO 100                        // Hecto
+#define DECA 10                         // Deca
+#define _ONE 1
+#define DECI 0.1                        // Deci
+#define CNTI 0.01                       // Centi
+#define MILI 0.001                      // Milli
+#define MCRO 0.000001                   // Micro
+#define NANO 0.000000001                // Nano
+#define PICO 0.000000000001             // Pico
+#define FMTO 0.000000000000001          // Femto
+#define ATTO 0.000000000000000001       // Atto
+#define ZPTO 0.000000000000000000001    // Zepto
+#define YCTO 0.000000000000000000000001 // Yocto
+
+#define THOU_PER 0.0000254              // Thou
+#define POIN_PER 0.00035277777777777778 // Point
+#define PICA_PER 0.00423333333333333333 // Pica
+#define INCH_PER 0.0254                 // Inch
+#define FOOT_PER 0.3048                 // Foot
+#define YARD_PER 0.9144                 // Yard
+#define CHIN_PER 20.1168                // Chain
+#define FRLN_PER 201.168                // Furlong
+#define MILE_PER 1609.344               // Mile
+#define LEGE_PER 4828.032               // League
 
 using namespace std;
 
@@ -67,104 +100,15 @@ namespace initium::math {
 	}
 
 	namespace convert {
-		constexpr long double ThouTo_nm(long double input)  { return input * 254000; }
-		constexpr long double ThouTo_mim(long double input) { return input * 25.4; }
-		constexpr long double ThouTo_mm(long double input)  { return input * 0.0254; }
-		constexpr long double ThouTo_cm(long double input)  { return input * 0.00254; }
-		constexpr long double ThouTo_dm(long double input)  { return input * 0.000254; }
-		constexpr long double ThouTo_m(long double input)   { return input * 0.0000254; }
-		constexpr long double ThouTo_dam(long double input) { return input * 0.00000254; }
-		constexpr long double ThouTo_hm(long double input)  { return input * 0.000000254; }
-		constexpr long double ThouTo_km(long double input)  { return input * 0.0000000254; }
-
-		constexpr long double PointTo_nm(long double input)  { return input * 352777.7777777778; }
-		constexpr long double PointTo_mim(long double input) { return input * 352.7777777778; }
-		constexpr long double PointTo_mm(long double input)  { return input * 0.3527777778; }
-		constexpr long double PointTo_cm(long double input)  { return input * 0.0352777778; }
-		constexpr long double PointTo_dm(long double input)  { return input * 0.0035277778; }
-		constexpr long double PointTo_m(long double input)   { return input * 0.0003527778; }
-		constexpr long double PointTo_dam(long double input) { return input * 0.0000352778; }
-		constexpr long double PointTo_hm(long double input)  { return input * 0.0000035278; }
-		constexpr long double PointTo_km(long double input)  { return input * 0.0000003528; }
-
-		constexpr long double PicaTo_nm(long double input)  { return input * 4233333.3333333333; }
-		constexpr long double PicaTo_mim(long double input) { return input * 4233.3333333333; }
-		constexpr long double PicaTo_mm(long double input)  { return input * 4.2333333333; }
-		constexpr long double PicaTo_cm(long double input)  { return input * 0.4233333333; }
-		constexpr long double PicaTo_dm(long double input)  { return input * 0.0423333333; }
-		constexpr long double PicaTo_m(long double input)   { return input * 0.0042333333; }
-		constexpr long double PicaTo_dam(long double input) { return input * 0.0004233333; }
-		constexpr long double PicaTo_hm(long double input)  { return input * 0.0000423333; }
-		constexpr long double PicaTo_km(long double input)  { return input * 0.0000042333; }
-
-		constexpr long double InchTo_nm(long double input)  { return input * 254000000; }
-		constexpr long double InchTo_mim(long double input) { return input * 25400; }
-		constexpr long double InchTo_mm(long double input)  { return input * 25.4; }
-		constexpr long double InchTo_cm(long double input)  { return input * 2.54; }
-		constexpr long double InchTo_dm(long double input)  { return input * 0.254; }
-		constexpr long double InchTo_m(long double input)   { return input * 0.0254; }
-		constexpr long double InchTo_dam(long double input) { return input * 0.00254; }
-		constexpr long double InchTo_hm(long double input)  { return input * 0.000254; }
-		constexpr long double InchTo_km(long double input)  { return input * 0.0000254; }
-
-		constexpr long double FootTo_nm(long double input)  { return input * 304800000; }
-		constexpr long double FootTo_mim(long double input) { return input * 304800; }
-		constexpr long double FootTo_mm(long double input)  { return input * 304.8; }
-		constexpr long double FootTo_cm(long double input)  { return input * 30.48; }
-		constexpr long double FootTo_dm(long double input)  { return input * 3.048; }
-		constexpr long double FootTo_m(long double input)   { return input * 0.3048; }
-		constexpr long double FootTo_dam(long double input) { return input * 0.03048; }
-		constexpr long double FootTo_hm(long double input)  { return input * 0.003048; }
-		constexpr long double FootTo_km(long double input)  { return input * 0.0003048; }
-
-		constexpr long double YardTo_nm(long double input)  { return input * 914400000; }
-		constexpr long double YardTo_mim(long double input) { return input * 914400; }
-		constexpr long double YardTo_mm(long double input)  { return input * 914.4; }
-		constexpr long double YardTo_cm(long double input)  { return input * 91.44; }
-		constexpr long double YardTo_dm(long double input)  { return input * 9.144; }
-		constexpr long double YardTo_m(long double input)   { return input * 0.9144; }
-		constexpr long double YardTo_dam(long double input) { return input * 0.09144; }
-		constexpr long double YardTo_hm(long double input)  { return input * 0.009144; }
-		constexpr long double YardTo_km(long double input)  { return input * 0.0009144; }
-
-		constexpr long double ChainTo_nm(long double input)  { return input * 20116800000; }
-		constexpr long double ChainTo_mim(long double input) { return input * 20116800; }
-		constexpr long double ChainTo_mm(long double input)  { return input * 20116.8; }
-		constexpr long double ChainTo_cm(long double input)  { return input * 2011.68; }
-		constexpr long double ChainTo_dm(long double input)  { return input * 201.168; }
-		constexpr long double ChainTo_m(long double input)   { return input * 20.1168; }
-		constexpr long double ChainTo_dam(long double input) { return input * 2.01168; }
-		constexpr long double ChainTo_hm(long double input)  { return input * 0.201168; }
-		constexpr long double ChainTo_km(long double input)  { return input * 0.0201168; }
-
-		constexpr long double FurlongTo_nm(long double input)  { return input * 201168000000; }
-		constexpr long double FurlongTo_mim(long double input) { return input * 201168000; }
-		constexpr long double FurlongTo_mm(long double input)  { return input * 201168; }
-		constexpr long double FurlongTo_cm(long double input)  { return input * 20116.8; }
-		constexpr long double FurlongTo_dm(long double input)  { return input * 2011.68; }
-		constexpr long double FurlongTo_m(long double input)   { return input * 201.168; }
-		constexpr long double FurlongTo_dam(long double input) { return input * 20.1168; }
-		constexpr long double FurlongTo_hm(long double input)  { return input * 2.01168; }
-		constexpr long double FurlongTo_km(long double input)  { return input * 0.201168; }
-
-		constexpr long double MileTo_nm(long double input)  { return input * 1609344000000; }
-		constexpr long double MileTo_mim(long double input) { return input * 1609344000; }
-		constexpr long double MileTo_mm(long double input)  { return input * 1609344; }
-		constexpr long double MileTo_cm(long double input)  { return input * 160934.4; }
-		constexpr long double MileTo_dm(long double input)  { return input * 16093.44; }
-		constexpr long double MileTo_m(long double input)   { return input * 1609.344; }
-		constexpr long double MileTo_dam(long double input) { return input * 160.9344; }
-		constexpr long double MileTo_hm(long double input)  { return input * 16.09344; }
-		constexpr long double MileTo_km(long double input)  { return input * 1.609344; }
-
-		constexpr long double LeagueTo_nm(long double input)  { return input * 4828032000000; }
-		constexpr long double LeagueTo_mim(long double input) { return input * 4828032000; }
-		constexpr long double LeagueTo_mm(long double input)  { return input * 4828032; }
-		constexpr long double LeagueTo_cm(long double input)  { return input * 482803.2; }
-		constexpr long double LeagueTo_dm(long double input)  { return input * 48280.32; }
-		constexpr long double LeagueTo_m(long double input)   { return input * 4828.032; }
-		constexpr long double LeagueTo_dam(long double input) { return input * 482.8032; }
-		constexpr long double LeagueTo_hm(long double input)  { return input * 48.28032; }
-		constexpr long double LeagueTo_km(long double input)  { return input * 4.828032; }
+		constexpr long double ThouTo    (long double input, long double unit = _ONE) { return input * THOU_PER / unit; }
+		constexpr long double PointTo   (long double input, long double unit = _ONE) { return input * POIN_PER / unit; }
+		constexpr long double PicaTo    (long double input, long double unit = _ONE) { return input * PICA_PER / unit; }
+		constexpr long double InchTo    (long double input, long double unit = _ONE) { return input * INCH_PER / unit; }
+		constexpr long double FootTo    (long double input, long double unit = _ONE) { return input * FOOT_PER / unit; }
+		constexpr long double YardTo    (long double input, long double unit = _ONE) { return input * YARD_PER / unit; }
+		constexpr long double ChainTo   (long double input, long double unit = _ONE) { return input * CHIN_PER / unit; }
+		constexpr long double FurlongTo (long double input, long double unit = _ONE) { return input * FRLN_PER / unit; }
+		constexpr long double MileTo    (long double input, long double unit = _ONE) { return input * MILE_PER / unit; }
+		constexpr long double LeagueTo  (long double input, long double unit = _ONE) { return input * LEGE_PER / unit; }
 	}
 }
