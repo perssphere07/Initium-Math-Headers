@@ -86,6 +86,38 @@ namespace initium::math {
 			return output;
 		}
 
+		bool IsPrime(unsigned long input) {
+			bool output = true;
+			if (input == 0 || input == 1) output = false;
+			else { for (unsigned long i = 2; i <= input / 2; ++i) { if (input % i == 0) { output = false; break; } } }
+			return output;
+		}
+
+		unsigned long gcd(vector<unsigned long> input) {
+			int size = input.size();
+			for (int i = 1; i < size; ++i) {
+				input[1] = gcd2(input[0], input[1]);
+				input.erase(input.begin());
+			}
+			return input[0];
+		}
+		unsigned long gcd2(unsigned long input1, unsigned long input2) {
+			if (input2 == 0) return input1;
+			return gcd2(input2, input1 % input2);
+		}
+
+		unsigned long lcm(vector<unsigned long> input) {
+			int size = input.size();
+			for (int i = 1; i < size; ++i) {
+				input[1] = lcm2(input[0], input[1]);
+				input.erase(input.begin());
+			}
+			return input[0];
+		}
+		unsigned long lcm2(unsigned long input1, unsigned long input2) {
+			return (input1 * input2) / gcd2(input1, input2);
+		}
+
 		constexpr unsigned long factorial(short input) { return tgamma(input + 1); }
 
 		constexpr long long fibonacci(short input) {
