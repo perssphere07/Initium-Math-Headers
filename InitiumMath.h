@@ -1,5 +1,7 @@
 #pragma once
+#include <algorithm>
 #include <cmath>
+#include <complex>
 #include <iostream>
 #include <vector>
 
@@ -77,6 +79,10 @@ namespace initium::math {
 			else output = average({input[input.size() / 2 - 1], input[input.size() / 2]});
 			return output;
 		}
+
+		constexpr long double reciprocal(long double input) { return 1 / input; }
+
+		constexpr long double percent(long double input) { return input / 100; }
 	}
 
 	namespace advanced {
@@ -86,11 +92,15 @@ namespace initium::math {
 			return output;
 		}
 
-		bool IsPrime(unsigned long input) {
-			bool output = true;
-			if (input == 0 || input == 1) output = false;
-			else { for (unsigned long i = 2; i <= input / 2; ++i) { if (input % i == 0) { output = false; break; } } }
-			return output;
+		long long prime(unsigned int input) {
+			int i = 1, j, count = 1;
+
+			for(;;) { i += 2;
+				for (j = 3; (j * j < i) && (i % j != 0); j += 2);
+
+				if (j * j > i) ++count;
+				if ( count == input ) break;
+			}
 		}
 
 		unsigned long gcd(vector<unsigned long> input) {
@@ -122,6 +132,13 @@ namespace initium::math {
 
 		constexpr long long fibonacci(short input) {
 			return (1 / sqrt(5)) * (pow(GDRT, input) - pow(((1 - sqrt(5)) / 2), input));
+		}
+
+		bool IsPrime(unsigned long input) {
+			bool output = true;
+			if (input == 0 || input == 1) output = false;
+			else { for (unsigned long i = 2; i <= input / 2; ++i) { if (input % i == 0) { output = false; break; } } }
+			return output;
 		}
 	}
 
