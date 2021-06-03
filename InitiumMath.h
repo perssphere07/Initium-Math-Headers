@@ -1,3 +1,9 @@
+// The Initium Math Header
+// by The Xphere
+//
+// https://github.com/xphere07/Initium-Math-Headers
+//
+
 #pragma once
 #include <algorithm>
 #include <cmath>
@@ -53,6 +59,12 @@ namespace initium::math {
 			return output;
 		}
 
+		long double product(vector<long double> input) {
+			long double output = 1;
+			for (int i = 0; i < input.size(); ++i) output *= input[i];
+			return output;
+		}
+
 		long double average(vector<long double> input, short degree = 1) {
 			long double output = degree ? 0 : 1, number = 0, i = 0;
 			if (degree) {
@@ -86,21 +98,18 @@ namespace initium::math {
 	}
 
 	namespace advanced {
-		vector<long double> _vector(long double input_begin, long double input_end, short increment = 1) {
-			vector<long double> output; int i = input_begin;
+		vector<long double> _vector(long double input_begin, long double input_end, double increment = 1) {
+			vector<long double> output; long double i = input_begin;
 			while (i <= input_end) { output.push_back(i); i += increment; }
 			return output;
 		}
 
 		long long prime(unsigned int input) {
-			int i = 1, j, count = 1;
-
-			for(;;) { i += 2;
-				for (j = 3; (j * j < i) && (i % j != 0); j += 2);
-
-				if (j * j > i) ++count;
-				if ( count == input ) break;
+			int count = 0, i = 1; 
+			for (; count <= input; ++i) {
+				if (miscellaneous::IsPrime(i)) ++count;
 			}
+			return i - 1;
 		}
 
 		unsigned long gcd(vector<unsigned long> input) {
@@ -111,7 +120,7 @@ namespace initium::math {
 			}
 			return input[0];
 		}
-		unsigned long gcd2(unsigned long input1, unsigned long input2) {
+		constexpr unsigned long gcd2(unsigned long input1, unsigned long input2) {
 			if (input2 == 0) return input1;
 			return gcd2(input2, input1 % input2);
 		}
@@ -124,7 +133,7 @@ namespace initium::math {
 			}
 			return input[0];
 		}
-		unsigned long lcm2(unsigned long input1, unsigned long input2) {
+		constexpr unsigned long lcm2(unsigned long input1, unsigned long input2) {
 			return (input1 * input2) / gcd2(input1, input2);
 		}
 
@@ -133,31 +142,72 @@ namespace initium::math {
 		constexpr long long fibonacci(short input) {
 			return (1 / sqrt(5)) * (pow(GDRT, input) - pow(((1 - sqrt(5)) / 2), input));
 		}
+	}
 
+	namespace miscellaneous {
+		bool IsLeapYear(short input) { return input % 4 ? false : (input % 100 ? true : input % 400 == 0); }
 		bool IsPrime(unsigned long input) {
 			bool output = true;
 			if (input == 0 || input == 1) output = false;
 			else { for (unsigned long i = 2; i <= input / 2; ++i) { if (input % i == 0) { output = false; break; } } }
 			return output;
 		}
+
+		vector<unsigned long> divisor(unsigned long input) {
+			vector<unsigned long> output;
+			for (unsigned long i = sqrt(input); i >= 1; --i) {
+				if (input % i == 0) {
+					output.emplace(output.begin(), i);
+					output.push_back(input / i);
+				}
+			}
+			return output;
+		}
 	}
 
 	namespace geometry {
+		constexpr unsigned long ShapeDiagonalNumber (unsigned short input) { return input * (input - 3) / 2; }
 		constexpr long double Length_RectangleDiagonal(long double input_width, long double input_height) {
 			return sqrt(pow(input_width, 2) + pow(input_height, 2));
 		}
 	}
 
 	namespace convert {
-		constexpr long double ThouTo    (long double input, long double unit = _ONE) { return input * THOU_PER / unit; }
-		constexpr long double PointTo   (long double input, long double unit = _ONE) { return input * POIN_PER / unit; }
-		constexpr long double PicaTo    (long double input, long double unit = _ONE) { return input * PICA_PER / unit; }
-		constexpr long double InchTo    (long double input, long double unit = _ONE) { return input * INCH_PER / unit; }
-		constexpr long double FootTo    (long double input, long double unit = _ONE) { return input * FOOT_PER / unit; }
-		constexpr long double YardTo    (long double input, long double unit = _ONE) { return input * YARD_PER / unit; }
-		constexpr long double ChainTo   (long double input, long double unit = _ONE) { return input * CHIN_PER / unit; }
-		constexpr long double FurlongTo (long double input, long double unit = _ONE) { return input * FRLN_PER / unit; }
-		constexpr long double MileTo    (long double input, long double unit = _ONE) { return input * MILE_PER / unit; }
-		constexpr long double LeagueTo  (long double input, long double unit = _ONE) { return input * LEGE_PER / unit; }
+		namespace length {
+			constexpr long double ThouTo    (long double input, long double unit = _ONE) { return input * THOU_PER / unit; }
+			constexpr long double PointTo   (long double input, long double unit = _ONE) { return input * POIN_PER / unit; }
+			constexpr long double PicaTo    (long double input, long double unit = _ONE) { return input * PICA_PER / unit; }
+			constexpr long double InchTo    (long double input, long double unit = _ONE) { return input * INCH_PER / unit; }
+			constexpr long double FootTo    (long double input, long double unit = _ONE) { return input * FOOT_PER / unit; }
+			constexpr long double YardTo    (long double input, long double unit = _ONE) { return input * YARD_PER / unit; }
+			constexpr long double ChainTo   (long double input, long double unit = _ONE) { return input * CHIN_PER / unit; }
+			constexpr long double FurlongTo (long double input, long double unit = _ONE) { return input * FRLN_PER / unit; }
+			constexpr long double MileTo    (long double input, long double unit = _ONE) { return input * MILE_PER / unit; }
+			constexpr long double LeagueTo  (long double input, long double unit = _ONE) { return input * LEGE_PER / unit; }
+		}
+		namespace temperature {
+			constexpr long double CelciusTo    (long double input) { return input + 273.15; }
+			constexpr long double FahrenheitTo (long double input, bool UsingCelcius = false) { 
+				return (input - 32) * 5 / 9 + (273.15 * ~UsingCelcius);
+			}
+			constexpr long double RankineTo    (long double input, bool UsingCelcius = false) {
+				return FahrenheitTo(input - 459.67, true) + (273.15 * ~UsingCelcius);
+			}
+			constexpr long double ReaumurTo    (long double input, bool UsingCelcius = false) {
+				return CelciusTo(input * 1.25);
+			}
+		}
+		namespace angle {
+			constexpr double RadianToDegree (double input) { return input * 180 / PI; }
+			constexpr double GonToDegree    (double input) { return input * 0.9; }
+			constexpr double DegreeToRadian (double input) { return input * PI / 180; }
+			constexpr double GonToRadian    (double input) { return input * PI / 200; }
+			constexpr double DegreeToGon    (double input) { return input / 0.9; }
+			constexpr double RadianToGon    (double input) { return input * 200 / PI; }
+
+			constexpr double DegBase60ToDec (short degree, unsigned __int8 minute = 0, double second = 0) {
+				return degree + minute / 60 + second / 3600;
+			}
+		}
 	}
 }
