@@ -53,6 +53,10 @@ using namespace std;
 
 namespace initium::math {
 	namespace basic {
+		constexpr long double reciprocal(long double input) { return 1 / input; }
+
+		constexpr long double percent(long double input) { return input / 100; }
+
 		long double sum(vector<long double> input) {
 			long double output = 0;
 			for (int i = 0; i < input.size(); ++i) output += input[i];
@@ -92,9 +96,48 @@ namespace initium::math {
 			return output;
 		}
 
-		constexpr long double reciprocal(long double input) { return 1 / input; }
+		constexpr long double cot(long double input)    { return reciprocal(tan(input)); }
+		constexpr long double sec(long double input)    { return reciprocal(cos(input)); }
+		constexpr long double csc(long double input)    { return reciprocal(sin(input)); }
+		constexpr long double arcsin(long double input) { return asin(input); }
+		constexpr long double arccos(long double input) { return acos(input); }
+		constexpr long double arctan(long double input) { return atan(input); }
+		constexpr long double arccot(long double input) { return arctan(reciprocal(input)); }
+		constexpr long double arcsec(long double input) { return arccos(reciprocal(input)); }
+		constexpr long double arccsc(long double input) { return arcsin(reciprocal(input)); }
+		constexpr long double coth(long double input)   { return 1 / tanh(input); }
+		constexpr long double sech(long double input)   { return 1 / cosh(input); }
+		constexpr long double csch(long double input)   { return 1 / sinh(input); }
+		constexpr long double arsinh(long double input) { return asinh(input); }
+		constexpr long double arcosh(long double input) { return acosh(input); }
+		constexpr long double artanh(long double input) { return atanh(input); }
+		constexpr long double arcoth(long double input) { return log((input + 1) / (input - 1)) * 1 / 2; }
+		constexpr long double arsech(long double input) { return log((1 / input) + sqrt((1 / pow(input, 2)) - 1)); }
+		constexpr long double arcsch(long double input) { return log((1 / input) + sqrt((1 / pow(input, 2)) + 1)); }
 
-		constexpr long double percent(long double input) { return input / 100; }
+		constexpr long double ver(long double input)    { return 1 - cos(input); }
+		constexpr long double vcs(long double input)    { return 1 + cos(input); }
+		constexpr long double cvs(long double input)    { return 1 - sin(input); }
+		constexpr long double cvc(long double input)    { return 1 + sin(input); }
+		constexpr long double hvs(long double input)    { return (1 - cos(input)) / 2; }
+		constexpr long double hvc(long double input)    { return (1 + cos(input)) / 2; }
+		constexpr long double hcv(long double input)    { return (1 - sin(input)) / 2; }
+		constexpr long double hcc(long double input)    { return (1 + sin(input)) / 2; }
+		constexpr long double exs(long double input)    { return sec(input) - 1; }
+		constexpr long double exc(long double input)    { return csc(input) - 1; }
+		constexpr long double arcver(long double input) { return arccos(1 - input); }
+		constexpr long double arcvcs(long double input) { return arccos(input - 1); }
+		constexpr long double arccvs(long double input) { return arcsin(1 - input); }
+		constexpr long double arccvc(long double input) { return arcsin(input - 1); }
+		constexpr long double archvs(long double input) { return arccos(1 - input * 2); }
+		constexpr long double archvc(long double input) { return arccos(input * 2 - 1); }
+		constexpr long double archcv(long double input) { return arcsin(1 - input * 2); }
+		constexpr long double archcc(long double input) { return arcsin(input * 2 - 1); }
+		constexpr long double arcexs(long double input) { return arcsec(input + 1); }
+		constexpr long double arcexc(long double input) { return arccsc(input + 1); }
+
+		constexpr long double crd(long double input)    { return sin(input / 2) * 2; }
+		constexpr long double acrd(long double input)   { return arcsin(input / 2) * 2; }
 	}
 
 	namespace advanced {
